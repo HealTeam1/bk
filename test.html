@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><title>Registro Test</title></head>
+<body>
+  <button onclick="registrar()">Registrar</button>
+  <script>
+    function registrar() {
+      fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: "prueba@correo.com",
+          password: "123456"
+        })
+      })
+      .then(res => res.json())
+      .then(data => alert(JSON.stringify(data)))
+      .catch(err => console.error(err));
+    }
+  </script>
+</body>
+</html>
+
+//http://localhost:3000/api-docs/#/
