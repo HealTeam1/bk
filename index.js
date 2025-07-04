@@ -5,19 +5,18 @@ require('dotenv').config();
 require('./config/db');
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./swagger'); // 👈 import correcto
+const swaggerSpec = require('./swagger');
 
 const authRoutes = require('./routes/authRoutes');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; 
 
 app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/api', authRoutes);
 
-// 👇 esta línea crea la ruta con la documentación interactiva
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(PORT, () => {
